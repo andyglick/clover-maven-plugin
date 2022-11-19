@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -54,7 +55,7 @@ public class CloverGetIncludedExcludedInstrumentedFilePathsFromFile {
 
     private String createTempFileWithLines(String[] lines) throws IOException {
         if (null != lines) {
-            File temp = File.createTempFile("includesExcludes", ".tmp");
+            File temp = Files.createTempFile("includesExcludes", ".tmp").toFile();
             FileOutputStream fos = new FileOutputStream(temp);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             for (String line : lines) {

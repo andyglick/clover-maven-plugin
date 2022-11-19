@@ -17,6 +17,7 @@ import com.atlassian.maven.plugin.clover.internal.AbstractCloverMojo;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 
 /**
@@ -134,7 +135,7 @@ public class CloverCheckMojoTest extends MockObjectTestCase {
     }
 
     private File createFile(String s) throws IOException {
-        File cloverDb = File.createTempFile(s, "");
+        File cloverDb = Files.createTempFile(s, "").toFile();
         cloverDb.createNewFile();
         return cloverDb;
     }

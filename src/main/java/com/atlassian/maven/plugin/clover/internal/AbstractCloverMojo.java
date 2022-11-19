@@ -30,6 +30,7 @@ import org.codehaus.plexus.resource.loader.FileResourceLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -246,7 +247,7 @@ public abstract class AbstractCloverMojo extends AbstractMojo implements CloverC
             Thread.currentThread().setContextClassLoader(classloader);
             try {
                 logger.debug("Attempting to load resource from [" + resourceLocation + "] ...");
-                final File outputFile = File.createTempFile("mvn", "resource");
+                final File outputFile = Files.createTempFile("mvn", "resource").toFile();
                 outputFile.deleteOnExit();
                 return resourceManager.getResourceAsFile(resourceLocation, outputFile.getPath());
             } catch (Exception e) {
